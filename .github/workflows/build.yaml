@@ -1,5 +1,4 @@
 name: Python Application
-
 on:
   push:
     branches:
