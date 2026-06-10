@@ -1,15 +1,18 @@
 name: Python Application
+
 on:
   push:
     branches:
       - main
       - qa
       - dev
+
   pull_request:
     branches:
       - main
       - qa
       - dev
+
 jobs:
   build-job:
     runs-on: ubuntu-latest
@@ -23,15 +26,17 @@ jobs:
         with:
           python-version: "3.8"
 
+      - name: Debug
+        run: |
+          pwd
+          find .
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-          pip install -r mini_project/requirements.txt
-          fi
+          pip install flask pytest gunicorn
 
       - name: Run Tests with Pytest
         run: |
-          pip install pytest
           export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest
