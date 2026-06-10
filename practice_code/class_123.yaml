@@ -1,0 +1,55 @@
+# name: first-job
+# on: 
+#   push:
+#     branches:
+#       - main
+#       - qa
+#       - dev
+
+# jobs:
+#   first-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: my-step
+#         run: echo "Hello World"'
+        
+
+name: conditional
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+
+  pull_request:
+    branches:
+      - main
+      - 'release/*'
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+ 
+      # Run only when push happens on main branch
+      - name: Only on main
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        run: echo "Main branch push"
+
+      # Run only on release branches
+      - name: Only on release
+        if: ${{ startsWith(github.ref, 'refs/heads/release/') }}
+        run: echo "Release branch logic engaged 🚀"
+
+      # Run only for internal PRs (not from forks)
+      - name: Trusted PR (not from fork)
+        if: ${{ github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork }}
+        run: echo "Internal PR"
+
+      # Skip heavy work if commit message contains [docs-only]
+      - name: Skip heavy work on docs-only change
+        if: ${{ !contains(github.event.head_commit.message, '[docs-only]') }}
+        run: echo "Running heavy tasks (no [docs-only] flag)"

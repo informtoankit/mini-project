@@ -1,0 +1,58 @@
+name: Matrix Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  matrix-build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+
+        node_version:
+          - 18
+          - 20
+
+        include:
+          - os: ubuntu-latest
+            node_version: 20
+            ubuntu_special: "true"
+
+        exclude:
+          - os: windows-latest
+            node_version: 18
+
+    env:
+      UBUNTU_SPECIAL: ${{ matrix.ubuntu_special }}
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Verify Node
+        run: node -v
+
+      - name: Matrix Information
+        run: |
+          echo "OS=${{ runner.os }}"
+          echo "NODE=${{ matrix.node_version }}"
+          echo "UBUNTU_SPECIAL=$UBUNTU_SPECIAL"
+
+      - name: Ubuntu Special Logic
+        if: ${{ matrix.ubuntu_special == 'true' }}
+        run: echo "Ubuntu Special Step"

@@ -1,0 +1,228 @@
+GitHub Actions
+
+GitHub Actions ek CI/CD tool hai jo GitHub ke andar built-in available hota hai. Jab bhi developer code me changes karke GitHub repository me push karta hai, GitHub Actions automatically trigger ho sakta hai aur predefined workflow execute karta hai.
+
+GitHub Actions ka use software development process ko automate karne ke liye kiya jata hai. Ye automatically application build kar sakta hai, tests run kar sakta hai, Docker image create kar sakta hai aur application ko deployment environment me deploy bhi kar sakta hai. Isse manual effort kam hota hai aur deployment process reliable ban jata hai.
+
+Typical GitHub Actions Flow
+Developer Changes Code
+          ↓
+Git Commit
+          ↓
+Git Push
+          ↓
+GitHub Actions Triggered
+          ↓
+Build Application
+          ↓
+Run Tests
+          ↓
+Code Quality Checks
+          ↓
+Create Docker Image
+          ↓
+Push Image to Registry
+          ↓
+Deploy Application
+What GitHub Actions Can Do
+
+GitHub Actions sirf deployment ke liye nahi balki repository management ke liye bhi use hota hai.
+
+Common Use Cases
+Automatic Build
+Automatic Testing
+Code Quality Checks
+Security Scanning
+Docker Image Build
+Deployment Automation
+Issue Management
+Pull Request Validation
+Code Review Automation
+Notifications
+Popular Alternatives
+Jenkins
+GitHub Actions
+GitLab CI/CD
+Azure DevOps
+CircleCI
+TeamCity
+Monitoring in DevOps
+
+Application deploy karne ke baad kaam khatam nahi hota. Production me continuously application aur infrastructure ko monitor karna padta hai. Monitoring ki help se performance issues, failures aur security problems ko jaldi detect kiya ja sakta hai.
+
+Monitoring ka objective hai:
+
+System Health Check
+Performance Monitoring
+Error Detection
+Alerting
+Capacity Planning
+Troubleshooting
+Popular Monitoring Stack
+Prometheus
+
+Prometheus metrics collect karta hai.
+
+Examples:
+
+CPU Usage
+Memory Usage
+Disk Usage
+Pod Status
+Request Count
+Response Time
+Grafana
+
+Grafana visualization tool hai.
+
+Prometheus se metrics lekar dashboards create karta hai.
+
+Examples:
+
+CPU Dashboard
+Memory Dashboard
+Kubernetes Dashboard
+Application Dashboard
+Loki
+
+Loki log aggregation tool hai.
+
+Purpose:
+
+Application Logs
+Container Logs
+Kubernetes Logs
+System Logs
+Alloy
+
+Grafana Alloy telemetry collector hai.
+
+Ye collect karta hai:
+
+Logs
+Metrics
+Traces
+
+Aur phir Loki, Prometheus ya Tempo ko bhejta hai.
+
+Tempo
+
+Tempo distributed tracing ke liye use hota hai.
+
+Example:
+
+User Request
+      ↓
+API Service
+      ↓
+Database
+      ↓
+Response
+
+Tempo poora request path trace kar sakta hai.
+
+ELK Stack
+Elasticsearch
+Logstash
+Kibana
+
+Purpose:
+
+Log Collection
+Log Processing
+Log Analysis
+Visualization
+Datadog
+
+Datadog ek SaaS monitoring platform hai.
+
+Features:
+
+Infrastructure Monitoring
+Application Monitoring
+Log Monitoring
+Tracing
+Alerting
+Security Monitoring
+Infrastructure Provisioning using Terraform
+
+Infrastructure ko manually create karne ke bajay DevOps engineers Infrastructure as Code (IaC) use karte hain.
+
+Most popular tool:
+
+Terraform
+
+Terraform se hum create kar sakte hain:
+
+AWS EC2
+AWS VPC
+AWS EKS
+AWS S3
+AWS IAM
+Load Balancers
+Databases
+Security Groups
+Terraform Workflow
+Write Terraform Code
+          ↓
+terraform init
+          ↓
+terraform plan
+          ↓
+terraform apply
+          ↓
+Infrastructure Created
+Complete Modern DevOps Workflow
+Developer Writes Code
+          ↓
+Git Commit
+          ↓
+Git Push
+          ↓
+GitHub Repository
+          ↓
+GitHub Actions / Jenkins
+          ↓
+Build Application
+          ↓
+Run Tests
+          ↓
+Create Artifact
+          ↓
+Build Docker Image
+          ↓
+Push to Registry
+          ↓
+Deploy to Kubernetes
+          ↓
+Monitor using:
+    Prometheus
+    Grafana
+    Loki
+    Tempo
+    Alloy
+          ↓
+Alerts & Dashboards
+What is a Workflow?
+
+A Workflow is a set of instructions or automated steps executed in a predefined order to complete a task.
+
+Example GitHub Actions Workflow:
+
+Code Push
+    ↓
+Build
+    ↓
+Test
+    ↓
+Docker Build
+    ↓
+Deploy
+
+Each step automatically executes after the previous step succeeds.
+
+Interview Definition
+
+A workflow is a sequence of automated tasks executed in a predefined order to achieve a specific objective, such as building, testing, and deploying an application. In GitHub Actions, workflows are defined using YAML files and are triggered by events such as code pushes, pull requests, or scheduled executions.
+
+Ab tumhare SDLC → Agile → DevOps → CI/CD → GitHub Actions → Terraform → Kubernetes → Monitoring ka flow complete ho gaya hai, jo almost har DevOps interview me poocha jata hai.
