@@ -1,9 +1,12 @@
 name: Python Application
+
 on:
   push:
+    branches:
       - main
       - qa
       - dev
+
   pull_request:
     branches:
       - main
@@ -29,6 +32,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
+
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
           fi
