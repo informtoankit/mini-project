@@ -1,10 +1,14 @@
 name: Python Application
-
 on:
   push:
+      - main
+      - qa
+      - dev
   pull_request:
     branches:
       - main
+      - qa
+      - dev
 
 jobs:
   build-job:
