@@ -1,24 +1,37 @@
-name: python apploication
+name: Python Application
+
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  push:
+  pull_request:
+    branches:
+      - main
+
 jobs:
-    build-jobs:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - name: Set up Python 3.8
-              uses: actions/setup-python@v4
-              with:
-                python-version: 3.8
-            - name: Install dependencies
-              run: |
-                python -m pip install --upgrade pip
-                if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run tests and test wih pytest
-              run: |
-                pip install pytest
-                export PYTHONPATH=$PYTHONPATH:$(pwd)
-                pytest test_app.py
+  build-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Install Python
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      # Install pytest and run tests
+      - name: Run Tests with Pytest
+        run: |
+          pip install pytest
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest test_app.py
